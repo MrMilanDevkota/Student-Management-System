@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib import messages
 
 from student.models import *
 
@@ -39,7 +40,28 @@ def student_detail(request, student_id):
     return render(request, 'student_detail.html', {'student': student})
 
 def update_student(request, student_id):
-    student = Student.objects.get(id=student_id)
+    student = get_object_or_404(Student, id=student_id)
+    
+    if request.method == 'POST':
+        student.first_name = request.POST.get('first_name')
+        student.last_name = request.POST.get('last_name')
+        student.grade = request.POST.get('grade')
+        student.date_of_birth = request.POST.get('date_of_birth')
+        student.fathers_name = request.POST.get('fathers_name')
+        student.mother_name = request.POST.get('mother_name')
+        student.address = request.POST.get('address')
+        student.phone_number = request.POST.get('phone_number')
+        student.gender = request.POST.get('gender')
+        student.email = request.POST.get('email')
+        student.enrollment_date = request.POST.get('enrollment_date')
+        
+        if request.FILES.get('image'):
+            student.image = request.FILES.get('image')
+        
+        student.save()
+        messages.success(request, 'Student updated successfully!')
+        return redirect('student_detail', student_id=student.id)
+    
     return render(request, 'update_student.html', {'student': student})
 
 def delete_student(request):
