@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Student - Student Management System</title>
+    <link rel="stylesheet" href="{% static 'css/create_student.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Add New Student</h1>
+            <a href="{% url 'index' %}" class="back-btn">← Back to Home</a>
+        </header>
+
+        <main>
+            <div class="form-container">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="form-section">
+                        <h2>Personal Information</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first_name">First Name <span class="required">*</span></label>
+                                <input type="text" id="first_name" name="first_name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="last_name">Last Name <span class="required">*</span></label>
+                                <input type="text" id="last_name" name="last_name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date_of_birth">Date of Birth <span class="required">*</span></label>
+                                <input type="date" id="date_of_birth" name="date_of_birth" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="gender">Gender <span class="required">*</span></label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image">Student Photo</label>
+                            <input type="file" id="image" name="image" accept="image/*">
+                            <small>Optional: Upload student photo (JPG, PNG)</small>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Academic Information</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="grade">Grade <span class="required">*</span></label>
+                                <input type="text" id="grade" name="grade" placeholder="e.g., 10th Grade" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="enrollment_date">Enrollment Date <span class="required">*</span></label>
+                                <input type="date" id="enrollment_date" name="enrollment_date" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Parent/Guardian Information</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fathers_name">Father's Name</label>
+                                <input type="text" id="fathers_name" name="fathers_name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mother_name">Mother's Name</label>
+                                <input type="text" id="mother_name" name="mother_name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Contact Information</h2>
+                        
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone_number" name="phone_number" placeholder="+977-9800000000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="student@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address <span class="required">*</span></label>
+                            <textarea id="address" name="address" rows="3" placeholder="Enter full address" required></textarea>
+                        </div>
+                    </div>
+
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-submit">Create Student</button>
+                        <a href="{% url 'index' %}" class="btn btn-cancel">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <p> Student Management System..</p>
+        </footer>
+    </div>
+</body>
+</html>

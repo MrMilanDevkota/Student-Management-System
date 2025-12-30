@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Management System</h1>
+            <p>Manage student records efficiently</p>
+        </header>
+
+        <main>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon create">
+                        <span>+</span>
+                    </div>
+                    <h2>Create Student</h2>
+                    <p>Add a new student record to the system</p>
+                    <a href="{% url 'create_student' %}" class="btn btn-create">Create</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon read">
+                        <span>📋</span>
+                    </div>
+                    <h2>View Students</h2>
+                    <p>Browse and search all student records</p>
+                    <a href="{% url 'read_students' %}" class="btn btn-read">View All</a>
+                </div>
+
+                
+                <div class="card">
+                    <div class="card-icon update">
+                        <span>✎</span>
+                    </div>
+                    <h2>Update Student</h2>
+                    <p>Edit existing student information</p>
+                    <a href="{% url 'read_students' %}" class="btn btn-update">Update</a>
+                </div>
+
+                
+                <div class="card">
+                    <div class="card-icon delete">
+                        <span>✖</span>
+                    </div>
+                    <h2>Delete Student</h2>
+                    <p>Remove student records from the system</p>
+                    <a href="{% url 'read_students' %}" class="btn btn-delete">Delete</a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p> Student Management System. </p>
+        </footer>
+    </div>
+</body>
+</html>
