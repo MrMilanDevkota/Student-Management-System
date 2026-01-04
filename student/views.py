@@ -2,12 +2,26 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 
 from student.models import *
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+
+def register(request):
+    return render(request, 'register.html')
+
+# def login(request):
+#     return render(request, 'login.html')
+
+# def logout(request):
+#     return redirect('login')
+
+# @login_required(login_url='login')
 def index(request):
     return render(request, 'index.html')
 
+
+# @login_required(login_url='login')
 def create_student(request):
     if request.method == 'POST':
         # Handle form submission logic here
@@ -31,14 +45,17 @@ def create_student(request):
 
     return render(request, 'create_student.html')
 
+# @login_required(login_url='login')
 def read_students(request):
     students = Student.objects.all()
     return render(request, 'read_student.html', {'students': students})
 
+# @login_required(login_url='login')
 def student_detail(request, student_id):
     student = Student.objects.get(id=student_id)
     return render(request, 'student_detail.html', {'student': student})
 
+# @login_required(login_url='login')
 def update_student(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     
@@ -64,6 +81,18 @@ def update_student(request, student_id):
     
     return render(request, 'update_student.html', {'student': student})
 
-def delete_student(request):
-    return render(request, 'delete_student.html')
+# @login_required(login_url='login')
+def delete_student(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    
+    if request.method == 'POST':
+        if request.POST.get('confirm'):
+            student_name = f"{student.first_name} {student.last_name}"
+            student.delete()
+            messages.success(request, f'{student_name} has been deleted successfully.')
+            return redirect('read_students')
+        else:
+            messages.error(request, 'Please confirm the deletion by checking the checkbox.')
+    
+    return render(request, 'delete_student.html', {'student': student})
 

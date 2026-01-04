@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Student - Confirmation</title>
+    <link rel="stylesheet" href="{% static 'css/delete_student.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Delete Student</h1>
+            <div class="header-buttons">
+                <a href="{% url 'student_detail' student.id %}" class="back-btn">← Cancel & Go Back</a>
+                <a href="{% url 'read_students' %}" class="list-btn">📋 All Students</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="warning-container">
+                <div class="warning-icon">⚠️</div>
+                <h2>Warning: This action cannot be undone!</h2>
+                <p>You are about to permanently delete this student's record from the system.</p>
+            </div>
+
+            <div class="student-info-container">
+                <div class="student-preview">
+                    {% if student.image %}
+                        <img src="{{ student.image.url }}" alt="{{ student.first_name }}" class="preview-photo">
+                    {% else %}
+                        <div class="photo-placeholder">
+                            {{ student.first_name|first }}{{ student.last_name|first }}
+                        </div>
+                    {% endif %}
+                    <h3 class="student-name">{{ student.first_name }} {{ student.last_name }}</h3>
+                    <p class="student-id">Student ID: #{{ student.id }}</p>
+                </div>
+
+                <div class="student-details">
+                    <h3>Student Information to be Deleted</h3>
+                    
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="label">Full Name:</span>
+                            <span class="value">{{ student.first_name }} {{ student.last_name }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Grade:</span>
+                            <span class="value">{{ student.grade }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Date of Birth:</span>
+                            <span class="value">{{ student.date_of_birth|date:"F d, Y" }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Gender:</span>
+                            <span class="value">{{ student.gender }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Phone Number:</span>
+                            <span class="value">{{ student.phone_number }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Email:</span>
+                            <span class="value">{{ student.email|default:"N/A" }}</span>
+                        </div>
+                        
+                        <div class="detail-item full-width">
+                            <span class="label">Address:</span>
+                            <span class="value">{{ student.address }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Enrollment Date:</span>
+                            <span class="value">{{ student.enrollment_date|date:"F d, Y" }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Father's Name:</span>
+                            <span class="value">{{ student.fathers_name|default:"N/A" }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="label">Mother's Name:</span>
+                            <span class="value">{{ student.mother_name|default:"N/A" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confirmation-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="confirmation-box">
+                        <input type="checkbox" id="confirm" name="confirm" required>
+                        <label for="confirm">
+                            I understand that this action is permanent and cannot be undone. 
+                            I confirm that I want to delete <strong>{{ student.first_name }} {{ student.last_name }}</strong>'s record.
+                        </label>
+                    </div>
+
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-delete">🗑️ Permanently Delete Student</button>
+                        <a href="{% url 'student_detail' student.id %}" class="btn btn-cancel">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <p>Student Management System</p>
+        </footer>
+    </div>
+</body>
+</html>

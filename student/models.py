@@ -1,7 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User  # If you plan to link students to user accounts
 
 # Create your models here.
 class Student(models.Model):
+
+    user=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     grade=models.CharField(max_length=10)
