@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Home Page - Student Management System</title>
+    <link rel="stylesheet" href="{% static 'css/landing_page.css' %}">
+    <!-- Google Fonts: Lexend -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Top Navigation Bar -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" fill="currentColor" fill-opacity="0.1"></path>
+                            <path d="M24 8L36 32H12L24 8Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="logo-text">SMS Portal</h2>
+                </div>
+                <nav class="main-nav">
+                    <div class="nav-links">
+                        <a href="#home">Home</a>
+                        <a href="#features">Features</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <a href="{% url 'login' %}" class="btn-primary">Login</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Manage Students, Courses & Results in One Place</h1>
+                        <p class="hero-subtitle">The centralized hub for college academic excellence. Streamline your educational journey with our unified, secure, and easy-to-use platform.</p>
+                        <a href="{% url 'login' %}" class="btn-hero">Login to Portal</a>
+                    </div>
+                    <div class="hero-image">
+                        <div class="image-wrapper" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZ4OfiOR3b3Q6_-DJ9sx0zSOk7wcBy7KPTmTvBhqXRtNrSu47tH-Yv1Ihtl5ai-F7onXKr6YZWmhwZysFOdip3i4cD5izKzsUjR5qJenIarXvmasFdel83oG1RGzZyY-Ij1SreiHIp5Tq61xYlX8S7-EP_8aU2t1XoVcVLUBugoNXpuyesE4njnmHD5N_sHOv1JTi59sdhPL-2dK2i9MPYVxdEffHgbmDg-2J17FcID9ADNIDcO5XZVYfdqEFlBELNWcAttfE6xK8");'></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Is This For? (Roles) -->
+        <section class="roles-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Who Is This For?</h2>
+                    <p class="section-subtitle">Tailored experiences for every stakeholder in the ecosystem.</p>
+                </div>
+                <div class="roles-grid">
+                    <div class="role-card">
+                        <div class="role-icon">
+                            <span class="material-symbols-outlined">school</span>
+                        </div>
+                        <h3 class="role-title">Student</h3>
+                        <p class="role-description">Check results, view class schedules, enroll in electives, and track your academic progress seamlessly.</p>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-icon">
+                            <span class="material-symbols-outlined">history_edu</span>
+                        </div>
+                        <h3 class="role-title">Teacher</h3>
+                        <p class="role-description">Input grades efficiently, manage student attendance, and upload class resources and assignments.</p>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-icon">
+                            <span class="material-symbols-outlined">manage_accounts</span>
+                        </div>
+                        <h3 class="role-title">Admin</h3>
+                        <p class="role-description">Manage users, generate institutional reports, overseeing system configuration and security.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Overview -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header center">
+                    <h2 class="section-title">Key Features Overview</h2>
+                    <p class="section-subtitle">Everything you need to manage the academic lifecycle in one robust platform.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">assignment_turned_in</span>
+                        <h3 class="feature-title">Real-time Gradebook</h3>
+                        <p class="feature-description">Instant access to grades and academic performance updates as soon as they are published.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">calendar_month</span>
+                        <h3 class="feature-title">Attendance Tracking</h3>
+                        <p class="feature-description">Seamless attendance logging for every class session with automated reporting.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">library_books</span>
+                        <h3 class="feature-title">Digital Library Access</h3>
+                        <p class="feature-description">Access course materials, readings, and resources anytime from the integrated repository.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">schedule</span>
+                        <h3 class="feature-title">Dynamic Scheduling</h3>
+                        <p class="feature-description">Interactive timetables that update in real-time for students and faculty.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">campaign</span>
+                        <h3 class="feature-title">Announcements</h3>
+                        <p class="feature-description">Broadcast important messages to specific groups or the entire institution instantly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">lock</span>
+                        <h3 class="feature-title">Secure Access</h3>
+                        <p class="feature-description">Role-based authentication ensures data privacy and security for all records.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">How the System Works</h2>
+                    <p class="section-subtitle">Getting started is simple. Our streamlined process ensures you can focus on what matters most—education.</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Login</h3>
+                        <p class="step-description">Use your unique university credentials to access the secure portal.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Dashboard</h3>
+                        <p class="step-description">Land on your personalized dashboard tailored to your specific role.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Manage</h3>
+                        <p class="step-description">Perform tasks like enrolling, grading, or scheduling with just a few clicks.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Review</h3>
+                        <p class="step-description">Track progress, generate reports, and stay updated in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container-narrow">
+                <h2 class="section-title">About the System</h2>
+                <p class="about-text">The SMS Portal is designed to bridge the gap between administration, faculty, and students. By digitizing manual processes, we aim to create a paperless, efficient, and transparent educational environment. Whether you are checking your GPA, submitting term grades, or managing the academic calendar, our system ensures accuracy and ease of access.</p>
+                <a href="#" class="learn-more">Learn more about our mission →</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="main-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col brand-col">
+                        <div class="footer-logo">
+                            <div class="logo-icon-small">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 8L36 32H12L24 8Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <span class="footer-brand">SMS Portal</span>
+                        </div>
+                        <p class="footer-tagline">Empowering education through technology.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Platform</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Contact Support</a></li>
+                            <li><a href="#">System Status</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Legal</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2024 Student Management System. All rights reserved.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

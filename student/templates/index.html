@@ -55,6 +55,11 @@
                     <a href="{% url 'read_students' %}" class="btn btn-delete">Delete</a>
                 </div>
             </div>
+            <form action="{% url 'logout' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn-logout">Logout</button>
+</form>
+
         </main>
 
         <footer>
