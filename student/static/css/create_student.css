@@ -7,9 +7,47 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #121212;
+    color: #ffffff;
     min-height: 100vh;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated Background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+    z-index: -2;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background: linear-gradient(45deg, #0f0c29, #302b63, #24243e); }
+    33% { background: linear-gradient(45deg, #24243e, #0f0c29, #302b63); }
+    66% { background: linear-gradient(45deg, #302b63, #24243e, #0f0c29); }
+    100% { background: linear-gradient(45deg, #0f0c29, #302b63, #24243e); }
+}
+
+/* Floating particles */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 20%);
+    z-index: -1;
 }
 
 .container {
@@ -27,41 +65,76 @@ header {
 }
 
 header h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #00d2ff, #3a47d5, #d400ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientText 3s ease infinite;
+}
+
+@keyframes gradientText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .back-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 25px;
     transition: all 0.3s ease;
     font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-btn::before {
+    content: "←";
+    margin-right: 8px;
+    font-size: 1.2rem;
 }
 
 .back-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     transform: translateX(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Form Container */
 .form-container {
-    background: white;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Form Section */
 .form-section {
     margin-bottom: 35px;
     padding-bottom: 25px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .form-section:last-of-type {
@@ -69,11 +142,16 @@ header h1 {
 }
 
 .form-section h2 {
-    color: #667eea;
-    font-size: 1.4rem;
+    background: linear-gradient(90deg, #00d2ff, #3a47d5);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 1.5rem;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #667eea;
+    border-bottom: 2px solid rgba(0, 210, 255, 0.3);
+    animation: gradientText 3s ease infinite;
 }
 
 /* Form Rows */
@@ -92,13 +170,13 @@ header h1 {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #333;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
     font-size: 0.95rem;
 }
 
 .required {
-    color: #e74c3c;
+    color: #ff5252;
     font-weight: bold;
 }
 
@@ -109,12 +187,14 @@ header h1 {
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    padding: 14px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     font-size: 1rem;
     transition: all 0.3s ease;
     font-family: inherit;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
 }
 
 .form-group input[type="text"]:focus,
@@ -124,28 +204,44 @@ header h1 {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #00d2ff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.15);
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group input[type="tel"]::placeholder,
+.form-group input[type="date"]::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group select option {
+    background: #24243e;
+    color: white;
 }
 
 .form-group input[type="file"] {
-    padding: 10px;
-    border: 2px dashed #e0e0e0;
-    border-radius: 8px;
+    padding: 12px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     width: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .form-group input[type="file"]:hover {
-    border-color: #667eea;
-    background: #f9f9ff;
+    border-color: #00d2ff;
+    background: rgba(0, 210, 255, 0.05);
 }
 
 .form-group small {
     display: block;
     margin-top: 5px;
-    color: #888;
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.85rem;
 }
 
@@ -161,26 +257,27 @@ header h1 {
 
 .alert {
     padding: 15px 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     margin-bottom: 10px;
+    backdrop-filter: blur(5px);
 }
 
 .alert-success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .alert-error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .alert-warning {
-    background: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeaa7;
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 /* Form Actions */
@@ -201,34 +298,74 @@ header h1 {
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 0;
+}
+
+.btn:hover::before {
+    transform: translateX(0);
+}
+
+.btn span {
+    position: relative;
+    z-index: 1;
 }
 
 .btn-submit {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #00d2ff, #3a47d5);
     color: white;
 }
 
 .btn-submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
 }
 
 .btn-cancel {
-    background: #f0f0f0;
-    color: #666;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn-cancel:hover {
-    background: #e0e0e0;
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer */
 footer {
     text-align: center;
-    color: white;
+    color: rgba(255, 255, 255, 0.7);
     padding: 20px 0;
     opacity: 0.8;
+    margin-top: 40px;
+    position: relative;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 
 /* Responsive Design */
@@ -238,7 +375,7 @@ footer {
     }
 
     header h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .form-row {
@@ -247,7 +384,7 @@ footer {
     }
 
     .form-section h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .form-actions {
