@@ -13,8 +13,6 @@ def home_page(request):
         return redirect('index')  # If logged in, go to index
     return render(request, 'landing_page.html')
 
-
-
 def register(request):
     if request.user.is_authenticated:
         return redirect('index')
@@ -60,7 +58,6 @@ def register(request):
         return redirect('index')
 
     return render(request, 'register.html')
-
 
 
 def login_view(request):
