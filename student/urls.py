@@ -5,8 +5,7 @@ from student import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', views.home_page, name='home_page'),
-    path('register/', views.register, name='register'),
-    path('login/', views.login_view, name='login'),
+
     path('logout/', views.logout_view, name='logout'),
     path('index/', views.index, name='index'),
     path('create_student/', views.create_student, name='create_student'),

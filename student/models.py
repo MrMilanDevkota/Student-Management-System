@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User  # If you plan to link students to user accounts
+
 
 # Create your models here.
 class Student(models.Model):
