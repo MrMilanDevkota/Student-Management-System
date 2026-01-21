@@ -1,9 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
@@ -22,6 +21,7 @@ def register(request):
         last_name = request.POST.get('last_name')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
+        role = request.POST.get('role')
 
         if not all([username, email, first_name, last_name, password1, password2]):
             messages.error(request, "All fields are required.")

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from student.models import *
 from django.contrib.auth.decorators import login_required
+from .decorators import role_required
 
 
 # Create your views here.
@@ -17,7 +18,11 @@ def home_page(request):
 
 @login_required(login_url='login')
 def index(request):
-    return render(request, 'index.html')
+        # Pass user role to template for conditional rendering
+    context = {
+        'user_role': request.user.profile.role if hasattr(request.user, 'profile') else None
+    }
+    return render(request, 'index.html', context)
 
 @login_required(login_url='login')
 def logout_view(request):
@@ -29,6 +34,7 @@ def logout_view(request):
 
 
 @login_required(login_url='login')
+@role_required('admin', 'teacher')
 def create_student(request):
     if request.method == 'POST':
         # Handle form submission logic here
@@ -63,6 +69,7 @@ def student_detail(request, student_id):
     return render(request, 'student_detail.html', {'student': student})
 
 @login_required(login_url='login')
+@role_required('admin', 'teacher')
 def update_student(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     
@@ -89,6 +96,7 @@ def update_student(request, student_id):
     return render(request, 'update_student.html', {'student': student})
 
 @login_required(login_url='login')
+@role_required('admin')
 def delete_student(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     
