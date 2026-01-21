@@ -130,21 +130,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # For Gmail
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'use your own gmail id' #
-EMAIL_HOST_PASSWORD = 'use your own'#'kiqivrhqqlajqeiy'  # Use App Password for Gmail
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # For Gmail
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 import os
 from dotenv import load_dotenv
 load_dotenv()  
